@@ -123,69 +123,90 @@ async function getSelectedBranchCode(selected_branches) {
 }
 
 function calculateRankRange(formData) {
-
-    let subMinRank = 0;
-
-    let minRank = formData.generalRank;
+    let minRank = formData.generalRank - 4000;
 
     if (formData.generalRank < 7000) {
-        subMinRank = 0;
-    }else if(formData.generalRank < 20000){
-        subMinRank = 7000;
-    }else if(formData.generalRank < 30000){
-        subMinRank = 8000;
-    }else if(formData.generalRank < 40000){
-        subMinRank = 9000;
-    }else if(formData.generalRank < 50000){
-        subMinRank = 10000;
-    }else if(formData.generalRank < 60000){
-        subMinRank = 11000;
-    }else if(formData.generalRank < 70000){
-        subMinRank = 12000;
-    }else if(formData.generalRank < 80000){
-        subMinRank = 13000;
-    }else if(formData.generalRank < 90000){
-        subMinRank = 14000;
-    }else if(formData.generalRank < 100000){
-        subMinRank = 15000;
-    }else {
-        subMinRank = 17000;
+        minRank = 0;
     }
-    
 
-    minRank -= subMinRank;
     new_data_of_student.minRank = minRank;
-    new_data_of_student.maxRank = 2000000;
+    new_data_of_student.maxRank = 200000;
 
-    if (formData.allIndiaRank  < 3000) {
-        subMinRank = 0;
-    }else if(formData.allIndiaRank  < 10000){
-        subMinRank = 7000;
-    }else if(formData.allIndiaRank  < 20000){
-        subMinRank = 8000;
-    }else if(formData.allIndiaRank  < 30000){
-        subMinRank = 9000;
-    }else if(formData.allIndiaRank  < 40000){
-        subMinRank = 10000;
-    }else if(formData.allIndiaRank  < 50000){
-        subMinRank = 11000;
-    }else if(formData.allIndiaRank < 60000){
-        subMinRank = 12000;
-    }else if(formData.allIndiaRank  < 70000){
-        subMinRank = 13000;
-    }else if(formData.allIndiaRank  < 80000){
-        subMinRank = 14000;
-    }else if(formData.allIndiaRank < 90000){
-        subMinRank = 15000;
-    }else {
-        subMinRank = 17000;
+    minRank = formData.allIndiaRank - 7000;
+
+
+    if (formData.allIndiaRank < 2000) {
+        minRank = 0;
     }
-    
-    minRank -= subMinRank;
     new_data_of_student.allMinRank = minRank;
-    new_data_of_student.allMaxRank = 2000000;
+    new_data_of_student.allMaxRank = 200000;
     
 }
+
+// function calculateRankRange(formData) {
+
+//     let subMinRank = 0;
+
+//     let minRank = formData.generalRank;
+
+//     if (formData.generalRank < 7000) {
+//         subMinRank = 0;
+//     }else if(formData.generalRank < 20000){
+//         subMinRank = 7000;
+//     }else if(formData.generalRank < 30000){
+//         subMinRank = 8000;
+//     }else if(formData.generalRank < 40000){
+//         subMinRank = 9000;
+//     }else if(formData.generalRank < 50000){
+//         subMinRank = 10000;
+//     }else if(formData.generalRank < 60000){
+//         subMinRank = 11000;
+//     }else if(formData.generalRank < 70000){
+//         subMinRank = 12000;
+//     }else if(formData.generalRank < 80000){
+//         subMinRank = 13000;
+//     }else if(formData.generalRank < 90000){
+//         subMinRank = 14000;
+//     }else if(formData.generalRank < 100000){
+//         subMinRank = 15000;
+//     }else {
+//         subMinRank = 17000;
+//     }
+    
+
+//     minRank -= subMinRank;
+//     new_data_of_student.minRank = minRank;
+//     new_data_of_student.maxRank = 2000000;
+
+//     if (formData.allIndiaRank  < 3000) {
+//         subMinRank = 0;
+//     }else if(formData.allIndiaRank  < 10000){
+//         subMinRank = 7000;
+//     }else if(formData.allIndiaRank  < 20000){
+//         subMinRank = 8000;
+//     }else if(formData.allIndiaRank  < 30000){
+//         subMinRank = 9000;
+//     }else if(formData.allIndiaRank  < 40000){
+//         subMinRank = 10000;
+//     }else if(formData.allIndiaRank  < 50000){
+//         subMinRank = 11000;
+//     }else if(formData.allIndiaRank < 60000){
+//         subMinRank = 12000;
+//     }else if(formData.allIndiaRank  < 70000){
+//         subMinRank = 13000;
+//     }else if(formData.allIndiaRank  < 80000){
+//         subMinRank = 14000;
+//     }else if(formData.allIndiaRank < 90000){
+//         subMinRank = 15000;
+//     }else {
+//         subMinRank = 17000;
+//     }
+    
+//     minRank -= subMinRank;
+//     new_data_of_student.allMinRank = minRank;
+//     new_data_of_student.allMaxRank = 2000000;
+    
+// }
 
 
 function clear_new_data_function() {
