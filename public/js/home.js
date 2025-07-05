@@ -249,10 +249,13 @@ async function fetchBranches() {
         }, []);
 
         data.forEach(element => {
-            const option = document.createElement('option');
-            option.value = `${element.branch_name}`;
-            option.innerHTML = `${element.branch_name}`;
-            branchSelect.appendChild(option);
+            if(element.Branch_category == 'OTHER'){
+                const option = document.createElement('option');
+                option.value = `${element.branch_name}`;
+                option.innerHTML = `${element.branch_name}`;
+                branchSelect.appendChild(option);
+            }
+            
         });
     } catch (error) {
         console.log(error);
@@ -317,7 +320,7 @@ async function generateCollegeList(formData) {
         });
 
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         displayColleges(data, formData);
     } catch (error) {
         console.log('Error:', error);
@@ -328,7 +331,7 @@ async function generateCollegeList(formData) {
 function displayColleges(colleges, formData) {
     collegeCardsContainer.innerHTML = '';
 
-    console.log(central_object.specialReservation);
+    // console.log(central_object.specialReservation);
     if (central_object.specialReservation != 'No') {
         collegeCardsContainer.innerHTML = `
             <div class="contact-message">

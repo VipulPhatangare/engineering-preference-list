@@ -25,10 +25,11 @@ app.get('/', (req, res) => {
 app.get('/fetchBranches', async (req, res) => {
     try {
         const { data, error } = await supabase
-            .from('branch')
-            .select('branch_name');
+            .from('branch_new')
+            .select('*');
         
         if (error) throw error;
+        // console.log(data);
         res.json(data);
     } catch (err) {
         console.error(err);
@@ -1076,7 +1077,7 @@ async function getColleges(formData) {
         ];
         // console.log(unique_choice.length);
         const colleges =  college_filter(unique_choice, formData);
-        colleges.sort((a, b) => b.points - a.points);
+        colleges.sort((a, b) => b.choice_points - a.choice_points);
         // console.log(colleges.length);
         // console.log(colleges);
         return colleges;
@@ -1096,23 +1097,34 @@ function college_filter_by_city(colleges, city) {
 }
 
 function college_filter_by_branch_category(colleges, branch_cat) {
-    return colleges.filter(element => element.branch_category == branch_cat);
+    return colleges.filter(element => branch_cat.includes(element.branch_category));
 }
 
 function college_fillter_by_selected_branch(colleges, selected_branches) {
-    return colleges.filter(element => selected_branches.includes(element.branch_name));
+    let college_list = [];
+    colleges.forEach(element => {
+        if(element.branch_category == 'OTHER'){
+            if(selected_branches.includes(element.branch_name)){
+                college_list.push(element);
+            }
+        }else{
+            college_list.push(element);
+        }
+    });
+    return college_list;
 }
 
 function college_filter(colleges, formData) {
     if (formData.city[0] != 'All') {
         colleges = college_filter_by_city(colleges, formData.city);
     }
-    
+
     if (formData.selected_branches.length == 0) {
         if (formData.branchCategories[0] != 'All') {
-            colleges = college_filter_by_branch_category(colleges, formData.branchCategory);
+            colleges = college_filter_by_branch_category(colleges, formData.branchCategories);
         }
     } else {
+        colleges = college_filter_by_branch_category(colleges, formData.branchCategories);
         colleges = college_fillter_by_selected_branch(colleges, formData.selected_branches);
     }
 
